@@ -21,7 +21,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh "sudo docker stop questions-crud || true && sudo docker rm -f questions-crud || true"
-                sh "docker image build -t questions-crud ."
+                sh "sudo docker image build -t questions-crud ."
                 sh "sudo docker run --name questions-crud --restart always -p 1111:1111 -d questions-crud"
             }
         }
