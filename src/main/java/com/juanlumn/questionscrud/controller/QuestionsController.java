@@ -8,6 +8,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static com.juanlumn.questionscrud.constants.Constants.ANSWERED;
+import static com.juanlumn.questionscrud.constants.Constants.ANSWER_QUESTION_ENDPOINT;
 import static com.juanlumn.questionscrud.constants.Constants.CATEGORIES;
 import static com.juanlumn.questionscrud.constants.Constants.DELETE_QUESTION_ENDPOINT;
 import static com.juanlumn.questionscrud.constants.Constants.EDIT_QUESTION_ENDPOINT;
@@ -32,6 +33,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
+import com.juanlumn.questionscrud.model.GeneralStatistics;
 import com.juanlumn.questionscrud.model.Question;
 import com.juanlumn.questionscrud.repository.QuestionsRepository;
 
@@ -150,7 +152,7 @@ public class QuestionsController {
     }
 
     /**
-     * Endpoint to delete a question
+     * Endpoint to edit a question
      *
      * @param question Question with the question to edit
      * @return OK if succeed or BAD REQUEST if error
@@ -163,6 +165,33 @@ public class QuestionsController {
         try {
             questionsRepository.delete(question.getQuestionID());
             questionsRepository.save(question);
+            return OK;
+        } catch (IllegalArgumentException e) {
+            return BAD_REQUEST;
+        }
+    }
+
+    /**
+     * Endpoint to edit a question after being answered
+     *
+     * @param question Question with the question to edit
+     * @return OK if succeed or BAD REQUEST if error
+     */
+    @RequestMapping(value = ANSWER_QUESTION_ENDPOINT, method = POST, produces = {APPLICATION_JSON_VALUE})
+    @ResponseBody
+    public HttpStatus answerQuestion(
+        @RequestBody
+            Question question) {
+        try {
+            GeneralStatistics generalStatistics = new GeneralStatistics();
+            generalStatistics.setAnswered(question.isAnswered());
+            generalStatistics.setCategory(question.getCategory());
+
+            questionsRepository.delete(question.getQuestionID());
+            questionsRepository.save(question);
+
+            questionsRepository.save(generalStatistics);
+
             return OK;
         } catch (IllegalArgumentException e) {
             return BAD_REQUEST;

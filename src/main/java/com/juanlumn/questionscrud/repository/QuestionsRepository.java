@@ -9,6 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
+import com.juanlumn.questionscrud.model.GeneralStatistics;
 import com.juanlumn.questionscrud.model.Question;
 
 import io.swagger.annotations.Api;
@@ -46,4 +47,6 @@ public interface QuestionsRepository extends CrudRepository<Question, Long> {
     List<Question> findByCategoryAndAnsweredFalse(
         @Param(CATEGORY)
             String category);
+
+    GeneralStatistics save(GeneralStatistics generalStatistics);
 }

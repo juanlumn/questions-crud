@@ -10,6 +10,7 @@ public class Constants {
     public static final String GET_FAILED_RANDOM_QUESTIONS_ENDPOINT = "getFailedRandomQuestions";
     public static final String DELETE_QUESTION_ENDPOINT = "deleteQuestion";
     public static final String EDIT_QUESTION_ENDPOINT = "editQuestion";
+    public static final String ANSWER_QUESTION_ENDPOINT = "answerQuestion";
     public static final String CATEGORIES = "categories";
 
     //Repository constants
