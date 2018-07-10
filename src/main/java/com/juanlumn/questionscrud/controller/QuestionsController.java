@@ -36,6 +36,7 @@ import com.google.gson.Gson;
 import com.juanlumn.questionscrud.model.GeneralStatistics;
 import com.juanlumn.questionscrud.model.Question;
 import com.juanlumn.questionscrud.repository.QuestionsRepository;
+import com.juanlumn.questionscrud.repository.StatisticsRepository;
 
 /**
  * This Controller provides the end points needed to create, read, update and delete Questions
@@ -47,6 +48,8 @@ public class QuestionsController {
 
     @Autowired
     private QuestionsRepository questionsRepository;
+    @Autowired
+    private StatisticsRepository statisticsRepository;
 
     @RequestMapping(value = SAVE_QUESTION_ENDPOINT, method = POST)
     ResponseEntity<?> saveQuestion(
@@ -190,7 +193,7 @@ public class QuestionsController {
             questionsRepository.delete(question.getQuestionID());
             questionsRepository.save(question);
 
-            questionsRepository.save(generalStatistics);
+            statisticsRepository.save(generalStatistics);
 
             return OK;
         } catch (IllegalArgumentException e) {
