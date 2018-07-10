@@ -21,8 +21,11 @@ import static com.juanlumn.questionscrud.constants.Constants.GET_STATISTICS_ENDP
 import static com.juanlumn.questionscrud.constants.Constants.QUESTION_ID;
 import static com.juanlumn.questionscrud.constants.Constants.SAVE_QUESTION_ENDPOINT;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -188,9 +191,13 @@ public class QuestionsController {
         @RequestBody
             Question question) {
         try {
+            LocalDateTime localDateTime = LocalDateTime.now().plusDays(1);
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.ENGLISH);
+
             GeneralStatistics generalStatistics = new GeneralStatistics();
             generalStatistics.setAnswered(question.isAnswered());
             generalStatistics.setCategory(question.getCategory());
+            generalStatistics.setDate(dateTimeFormatter.format(localDateTime));
 
             questionsRepository.delete(question.getQuestionID());
             questionsRepository.save(question);

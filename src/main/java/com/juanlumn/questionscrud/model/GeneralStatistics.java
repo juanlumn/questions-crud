@@ -38,4 +38,10 @@ public class GeneralStatistics {
     @Column
     boolean answered;
 
+    /**
+     * {@link String} with the date in format dd-mm-yyyy
+     */
+    @Column
+    String date;
+
 }
