@@ -14,6 +14,7 @@ import static com.juanlumn.questionscrud.constants.Constants.DELETE_QUESTION_END
 import static com.juanlumn.questionscrud.constants.Constants.EDIT_QUESTION_ENDPOINT;
 import static com.juanlumn.questionscrud.constants.Constants.GET_ALL_QUESTIONS_ENDPOINT;
 import static com.juanlumn.questionscrud.constants.Constants.GET_FAILED_RANDOM_QUESTIONS_ENDPOINT;
+import static com.juanlumn.questionscrud.constants.Constants.GET_NUMBER_OF_QUESTIONS_ENDPOINT;
 import static com.juanlumn.questionscrud.constants.Constants.GET_RANDOM_QUESTIONS_BY_CATEGORY_ENDPOINT;
 import static com.juanlumn.questionscrud.constants.Constants.GET_RANDOM_QUESTIONS_ENDPOINT;
 import static com.juanlumn.questionscrud.constants.Constants.GET_STATISTICS_ENDPOINT;
@@ -231,5 +232,17 @@ public class QuestionsController {
     @ResponseBody
     public List<GeneralStatistics> getStatistics() {
         return (List<GeneralStatistics>) statisticsRepository.findAll();
+    }
+
+    /**
+     * Endpoint to get the total number of questions in the database
+     *
+     * @return int with the result or 0 if none
+     */
+    @RequestMapping(value = GET_NUMBER_OF_QUESTIONS_ENDPOINT, method = GET, produces = {APPLICATION_JSON_VALUE})
+    @ResponseBody
+    public int getNumberOfQuestions() {
+        List<Question> questionList = (List<Question>) questionsRepository.findAll();
+        return questionList.size();
     }
 }
