@@ -5,6 +5,7 @@ public class Constants {
     //Controller constants
     public static final String SAVE_QUESTION_ENDPOINT = "saveQuestion";
     public static final String GET_RANDOM_QUESTIONS_ENDPOINT = "getRandomQuestions";
+    public static final String GET_STATISTICS_ENDPOINT = "getStatistics";
     public static final String GET_ALL_QUESTIONS_ENDPOINT = "getAllQuestions";
     public static final String GET_RANDOM_QUESTIONS_BY_CATEGORY_ENDPOINT = "getRandomQuestionsByCategory";
     public static final String GET_FAILED_RANDOM_QUESTIONS_ENDPOINT = "getFailedRandomQuestions";

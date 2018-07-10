@@ -16,6 +16,7 @@ import static com.juanlumn.questionscrud.constants.Constants.GET_ALL_QUESTIONS_E
 import static com.juanlumn.questionscrud.constants.Constants.GET_FAILED_RANDOM_QUESTIONS_ENDPOINT;
 import static com.juanlumn.questionscrud.constants.Constants.GET_RANDOM_QUESTIONS_BY_CATEGORY_ENDPOINT;
 import static com.juanlumn.questionscrud.constants.Constants.GET_RANDOM_QUESTIONS_ENDPOINT;
+import static com.juanlumn.questionscrud.constants.Constants.GET_STATISTICS_ENDPOINT;
 import static com.juanlumn.questionscrud.constants.Constants.QUESTION_ID;
 import static com.juanlumn.questionscrud.constants.Constants.SAVE_QUESTION_ENDPOINT;
 
@@ -219,5 +220,16 @@ public class QuestionsController {
 
         shuffle(questionList);
         return questionList;
+    }
+
+    /**
+     * Endpoint to get statistics
+     *
+     * @return List<GeneralStatistics> with the result or empty list if none
+     */
+    @RequestMapping(value = GET_STATISTICS_ENDPOINT, method = GET, produces = {APPLICATION_JSON_VALUE})
+    @ResponseBody
+    public List<GeneralStatistics> getStatistics() {
+        return (List<GeneralStatistics>) statisticsRepository.findAll();
     }
 }
