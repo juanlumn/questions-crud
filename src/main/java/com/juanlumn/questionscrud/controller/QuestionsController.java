@@ -191,7 +191,7 @@ public class QuestionsController {
         @RequestBody
             Question question) {
         try {
-            LocalDateTime localDateTime = LocalDateTime.now().plusDays(1);
+            LocalDateTime localDateTime = LocalDateTime.now();
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.ENGLISH);
 
             GeneralStatistics generalStatistics = new GeneralStatistics();
