@@ -36,7 +36,7 @@ public class Question implements Serializable {
     /**
      * {@link String} with the question itself
      */
-    @Column
+    @Column(columnDefinition="text")
     String question;
 
     /**
