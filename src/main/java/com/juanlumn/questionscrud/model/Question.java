@@ -10,6 +10,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
@@ -39,7 +40,7 @@ public class Question implements Serializable {
      * {@link String} with the question itself
      */
     @Column
-    @Type(type="text")
+    @Lob
     String question;
 
     /**
