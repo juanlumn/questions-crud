@@ -39,7 +39,7 @@ public class Question implements Serializable {
     /**
      * {@link String} with the question itself
      */
-    @Column
+    @Column(columnDefinition="CLOB NOT NULL")
     @Lob
     String question;
 
