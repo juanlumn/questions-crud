@@ -39,21 +39,23 @@ public class Question implements Serializable {
     /**
      * {@link String} with the question itself
      */
-    @Column(columnDefinition="CLOB NOT NULL")
+    @Column(columnDefinition="LONGTEXT NOT NULL")
     @Lob
     String question;
 
     /**
      * {@link List<String>} with the Answers
      */
-    @Column
     @ElementCollection
+    @Column(columnDefinition="LONGTEXT NOT NULL")
+    @Lob
     List<String> answers;
 
     /**
      * {@link String} with the correct answer
      */
-    @Column
+    @Column(columnDefinition="LONGTEXT NOT NULL")
+    @Lob
     String correctAnswer;
 
     /**
