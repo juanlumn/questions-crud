@@ -207,6 +207,9 @@ public class QuestionsController {
             generalStatistics.setDate(dateTimeFormatter.format(localDateTime));
 
             questionsRepository.delete(question.getQuestionID());
+            List<String> answers =
+                question.getAnswers().stream().filter(q -> !q.isEmpty() && !q.equalsIgnoreCase(" ")).collect(toList());
+            question.setAnswers(answers);
             questionsRepository.save(question);
 
             statisticsRepository.save(generalStatistics);
