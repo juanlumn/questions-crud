@@ -47,7 +47,7 @@ public class Question implements Serializable {
      * {@link List<String>} with the Answers
      */
     @ElementCollection
-    @Column(columnDefinition="LONGTEXT NOT NULL")
+    @Column(columnDefinition="LONGTEXT")
     @Lob
     List<String> answers;
 
