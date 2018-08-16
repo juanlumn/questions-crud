@@ -176,6 +176,9 @@ public class QuestionsController {
             Question question) {
         try {
             questionsRepository.delete(question.getQuestionID());
+            List<String> answers =
+                question.getAnswers().stream().filter(q -> !q.isEmpty() && !q.equalsIgnoreCase(" ")).collect(toList());
+            question.setAnswers(answers);
             questionsRepository.save(question);
             return OK;
         } catch (IllegalArgumentException e) {
