@@ -47,6 +47,4 @@ public interface QuestionsRepository extends CrudRepository<Question, Long> {
     List<Question> findByCategoryAndAnsweredFalse(
         @Param(CATEGORY)
             String category);
-
-    GeneralStatistics save(GeneralStatistics generalStatistics);
 }

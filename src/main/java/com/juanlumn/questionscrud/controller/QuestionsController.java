@@ -1,6 +1,7 @@
 package com.juanlumn.questionscrud.controller;
 
 import static java.util.Collections.shuffle;
+import static java.util.stream.Collectors.toList;
 import static org.slf4j.LoggerFactory.getLogger;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.OK;
@@ -61,6 +62,9 @@ public class QuestionsController {
         @RequestBody
             Question question) {
         Gson gson = new Gson();
+        List<String> answers =
+            question.getAnswers().stream().filter(q -> !q.isEmpty() && !q.equalsIgnoreCase(" ")).collect(toList());
+        question.setAnswers(answers);
         Question save = questionsRepository.save(question);
         return new ResponseEntity<>(gson.toJson(save), OK);
     }
